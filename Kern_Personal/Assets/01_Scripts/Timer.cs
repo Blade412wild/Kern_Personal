@@ -6,6 +6,7 @@ using System;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] private float minutesInput;
     [SerializeField] private TextMeshProUGUI second1;
     [SerializeField] private TextMeshProUGUI second2;
     [SerializeField] private TextMeshProUGUI seperator1;
@@ -15,13 +16,14 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hours1;
     [SerializeField] private TextMeshProUGUI hours2;
 
-    private float timerDuration = 3 * 60f;
+    private float timerDuration;
     private float timer;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        timerDuration = minutesInput * 60.0f;
         ResetTimer();
     }
 
@@ -32,6 +34,11 @@ public class Timer : MonoBehaviour
         {
             UpdateTimerDisplay(timer);
             timer -= Time.deltaTime;
+        }
+        else if (timer <= 0)
+        {
+            Debug.Log(" er is een uur voorbij");
+            ResetTimer();
         }
         else
         {

@@ -830,6 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f179125098f634e9f0b7fde725a4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minutesInput: 0.1
   second1: {fileID: 6430011667770621543}
   second2: {fileID: 3374643922946459806}
   seperator1: {fileID: 1877475966812440436}
