@@ -30,7 +30,6 @@ public class Timer : MonoBehaviour
     void Start()
     {
         //EventManager.AddListner(TimerDone, ActionTimerIsDone
-        TimerIsDone += EventTest;
         timerDuration = minutesInput * 60.0f;
         ResetTimer();
     }
@@ -78,10 +77,4 @@ public class Timer : MonoBehaviour
 
 
     }
-
-    public void EventTest()
-    {
-        Debug.Log(" het werkt");
-    }
-
 }

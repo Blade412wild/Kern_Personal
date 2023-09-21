@@ -43,20 +43,20 @@ public class HoursManager : MonoBehaviour
     private void Counter()
     {
         counter++;
+        Debug.Log(" het is " + counter + " uur");
         EventCaster(counter);
 
         if (counter == 23)
         {
             counter = 0;
         }
-        Debug.Log(counter);
+
         //ArrayDayHours[0]?.ToString();
         //Debug.Log(ArrayDayHours[0]?.ToString());
     }
 
     private void EventCaster(int hour)
     {
-        Debug.Log(" switch");
         switch (hour)
         {
             case 0: Hour0?.Invoke(); break;
