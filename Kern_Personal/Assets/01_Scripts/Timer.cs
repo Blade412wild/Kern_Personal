@@ -19,15 +19,18 @@ public class Timer : MonoBehaviour
     private float timerDuration;
     private float timer;
 
-    public delegate void MyDelegate();
-    public event MyDelegate someEvent;
+    public System.Action ActionTimerIsDone;
 
+    public delegate void TimerEvent();
+    public static event TimerEvent TimerIsDone;
 
+    //public EventType TimerDone;
 
     // Start is called before the first frame update
     void Start()
     {
-        someEvent += TestEvent;
+        //EventManager.AddListner(TimerDone, ActionTimerIsDone
+        TimerIsDone += EventTest;
         timerDuration = minutesInput * 60.0f;
         ResetTimer();
     }
@@ -37,12 +40,13 @@ public class Timer : MonoBehaviour
     {
         if (timer > 0)
         {
+
             UpdateTimerDisplay(timer);
             timer -= Time.deltaTime;
         }
         else if (timer <= 0)
         {
-            someEvent?.Invoke();
+            TimerIsDone?.Invoke();
             ResetTimer();
         }
         else
@@ -75,9 +79,9 @@ public class Timer : MonoBehaviour
 
     }
 
-    public void TestEvent()
+    public void EventTest()
     {
-        Debug.Log(" er is een uur voorbij");
+        Debug.Log(" het werkt");
     }
 
 }

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EventManager<T>
+public static class EventManager
 {
-    private static Dictionary<EventType, System.Action<T>>
-    eventDictionary = new Dictionary<EventType, System.Action<T>>();
+    private static Dictionary<EventType, System.Action>
+    eventDictionary = new Dictionary<EventType, System.Action>();
 
-    public static void AddListner(EventType type, System.Action<T> function)
+    public static void AddListner(EventType type, System.Action function)
     {
         if (!eventDictionary.ContainsKey(type))
         {
@@ -16,7 +16,7 @@ public static class EventManager<T>
         eventDictionary[type] += function;
     }
 
-    public static void RemoveListner(EventType type, System.Action<T> function)
+    public static void RemoveListner(EventType type, System.Action function)
     {
         if (!eventDictionary.ContainsKey(type) && eventDictionary[type] != null)
         {
@@ -24,9 +24,9 @@ public static class EventManager<T>
         }
     }
 
-    public static void RaiseEvent(EventType type, T arg1)
+    public static void RaiseEvent(EventType type)
     {
-        eventDictionary[type]?.Invoke(arg1);
+        eventDictionary[type]?.Invoke();
     }
 
 
