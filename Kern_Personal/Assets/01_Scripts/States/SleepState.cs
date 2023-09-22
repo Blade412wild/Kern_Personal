@@ -8,12 +8,14 @@ public class SleepState : BaseState
 {
     public override void OnEnter()
     {
+        transform.position = new Vector3(-15, transform.position.y, transform.position.z);
+        Debug.Log(transform.name + "sleeping");
+
 
     }
 
     public override void OnExit()
     {
-        owner.SwitchState(typeof(StateToWork));
 
     }
 

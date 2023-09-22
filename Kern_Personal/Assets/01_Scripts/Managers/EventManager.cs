@@ -7,8 +7,6 @@ public static class EventManager
     public enum GameEvent
     {
         NEXT_HOUR,
-
-
     }
 
     private static Dictionary<GameEvent, System.Action>

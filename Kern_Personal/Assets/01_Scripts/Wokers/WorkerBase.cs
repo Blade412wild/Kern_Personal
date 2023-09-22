@@ -19,11 +19,18 @@ public abstract class WorkerBase : MonoBehaviour
     private int beginToHomeHours;
     private int endToHomeHours;
 
-    //private int index;
+    private FSM fsm;
+
+    private void OnEnable()
+    {
+    }
+
     private void Start()
     {
+        HoursManager.OndingDong += EventHourSubscriber;
+        fsm = new FSM(typeof(SleepState), GetComponents<BaseState>());
         HourDecider();
-        HoursShower();
+        //HoursShower();
     }
 
     public virtual void Sleeping()
@@ -60,11 +67,35 @@ public abstract class WorkerBase : MonoBehaviour
         endToWorkHours = WorkerData.ToWorkHours[1];
 
     }
-    private void HoursShower()
+    //private void HoursShower()
+    //{
+    //    Debug.Log(transform.name + " begint met werken op " + beginWorkHours + " uur ");
+    //    Debug.Log(transform.name + " gaat naar huis op  " + beginToHomeHours + " uur");
+    //    Debug.Log(transform.name + " gaat naar werk op " + beginToWorkHours + " uur");
+    //    Debug.Log(transform.name + " begint met slapen op " + beginSleepHours + " uur");
+    //}
+
+    private void EventHourSubscriber(int hour)
     {
-        Debug.Log(transform.name + " begint met werken op " + beginWorkHours + " uur ");
-        Debug.Log(transform.name + " gaat naar huis op  " + beginToHomeHours + " uur");
-        Debug.Log(transform.name + " gaat naar werk op " + beginToWorkHours + " uur");
-        Debug.Log(transform.name + " begint met slapen op " + beginSleepHours + " uur");
+        Debug.Log("eventHoursubec  " + hour );
+        if (hour == beginWorkHours)
+        {
+            fsm.SwitchState(typeof(WorkState));
+        }
+
+        if (hour == beginToHomeHours)
+        {
+            fsm.SwitchState(typeof(StateToHome));
+        }
+
+        if (hour == beginToWorkHours)
+        {
+            fsm.SwitchState(typeof(StateToWork));
+
+        }
+        if (hour == beginSleepHours)
+        {
+            fsm.SwitchState(typeof(SleepState));
+        }
     }
 }
