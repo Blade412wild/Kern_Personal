@@ -24,8 +24,6 @@ public class Timer : MonoBehaviour
     public delegate void TimerEvent();
     public static event TimerEvent TimerIsDone;
 
-    //public EventType TimerDone;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +37,6 @@ public class Timer : MonoBehaviour
     {
         if (timer > 0)
         {
-
             UpdateTimerDisplay(timer);
             timer -= Time.deltaTime;
         }
@@ -47,10 +44,6 @@ public class Timer : MonoBehaviour
         {
             TimerIsDone?.Invoke();
             ResetTimer();
-        }
-        else
-        {
-            Flash();
         }
     }
 
@@ -69,12 +62,6 @@ public class Timer : MonoBehaviour
         minutes2.text = currentTime[1].ToString();
         second1.text = currentTime[2].ToString();
         second2.text = currentTime[3].ToString();
-
-    }
-
-    private void Flash()
-    {
-
 
     }
 }

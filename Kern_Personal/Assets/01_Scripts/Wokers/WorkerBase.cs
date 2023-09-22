@@ -20,17 +20,17 @@ public abstract class WorkerBase : MonoBehaviour
     private int endToHomeHours;
 
     private FSM fsm;
-
-    private void OnEnable()
-    {
-    }
-
     private void Start()
     {
         HoursManager.OndingDong += EventHourSubscriber;
         fsm = new FSM(typeof(SleepState), GetComponents<BaseState>());
         HourDecider();
-        //HoursShower();
+    }
+
+    private void OnDisable()
+    {
+        HoursManager.OndingDong -= EventHourSubscriber;
+
     }
 
     public virtual void Sleeping()
@@ -67,17 +67,9 @@ public abstract class WorkerBase : MonoBehaviour
         endToWorkHours = WorkerData.ToWorkHours[1];
 
     }
-    //private void HoursShower()
-    //{
-    //    Debug.Log(transform.name + " begint met werken op " + beginWorkHours + " uur ");
-    //    Debug.Log(transform.name + " gaat naar huis op  " + beginToHomeHours + " uur");
-    //    Debug.Log(transform.name + " gaat naar werk op " + beginToWorkHours + " uur");
-    //    Debug.Log(transform.name + " begint met slapen op " + beginSleepHours + " uur");
-    //}
 
     private void EventHourSubscriber(int hour)
     {
-        Debug.Log("eventHoursubec  " + hour );
         if (hour == beginWorkHours)
         {
             fsm.SwitchState(typeof(WorkState));
