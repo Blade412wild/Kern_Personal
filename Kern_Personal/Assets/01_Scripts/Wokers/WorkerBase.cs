@@ -32,6 +32,7 @@ public abstract class WorkerBase : MonoBehaviour
 
     private void Start()
     {
+
     }
 
 }

@@ -11,6 +11,7 @@ public class StateToHome : BaseState
 
     public override void OnExit()
     {
+        owner.SwitchState(typeof(SleepState));
 
     }
 

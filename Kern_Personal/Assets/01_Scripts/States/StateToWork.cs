@@ -11,6 +11,7 @@ public class StateToWork : BaseState
 
     public override void OnExit()
     {
+        owner.SwitchState(typeof(WorkState));
 
     }
 

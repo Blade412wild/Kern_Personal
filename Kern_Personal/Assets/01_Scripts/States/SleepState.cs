@@ -8,12 +8,12 @@ public class SleepState : BaseState
 {
     public override void OnEnter()
     {
-        owner.SwitchState(typeof(StateToHome));
 
     }
 
     public override void OnExit()
     {
+        owner.SwitchState(typeof(StateToWork));
 
     }
 
