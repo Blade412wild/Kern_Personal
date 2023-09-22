@@ -44,7 +44,7 @@ public class HoursManager : MonoBehaviour
     {
         counter++;
         Debug.Log(" het is " + counter + " uur");
-        EventCaster(counter);
+        EventRaiser(counter);
 
         if (counter == 23)
         {
@@ -55,7 +55,7 @@ public class HoursManager : MonoBehaviour
         //Debug.Log(ArrayDayHours[0]?.ToString());
     }
 
-    private void EventCaster(int hour)
+    private void EventRaiser(int hour)
     {
         switch (hour)
         {
