@@ -8,30 +8,27 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 public abstract class WorkerBase : MonoBehaviour
 {
-    //public int[] workHours = { 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-    //public int[] SleepHours = { 22, 0, 1, 2, 3, 4, 5, 6, 7 };
-    //public int[] ToWorkHours = { 8 };
-    //public int[] ToHomeHours = { 18, 19, 20, 21 };
+    public WorkerData WorkerData;
 
-    //private int beginWorkHours;
-    //private int endWorkHours;
-    //private int beginSleepHours;
-    //private int endSleepHours;
-    //private int beginToWorkHours;
-    //private int endToWorkHours;
-    //private int beginToHomeHours;
-    //private int endToHomeHours;
+    private int beginWorkHours;
+    private int endWorkHours;
+    private int beginSleepHours;
+    private int endSleepHours;
+    private int beginToWorkHours;
+    private int endToWorkHours;
+    private int beginToHomeHours;
+    private int endToHomeHours;
 
     //private int index;
-    //private void Start()
-    //{
-    //    HourEventDecider();
-    //    HoursShower();
-    //}
+    private void Start()
+    {
+        HourDecider();
+        HoursShower();
+    }
 
     public virtual void Sleeping()
     {
-        Debug.Log( transform.name + "sleeping");
+        Debug.Log(transform.name + "sleeping");
     }
     public virtual void Working()
     {
@@ -48,38 +45,26 @@ public abstract class WorkerBase : MonoBehaviour
         Debug.Log(transform.name + "ToHome");
     }
 
-    //private void HourEventDecider()
-    //{
-    //    index = 0;
-    //    // hier bepaal ik via index 0 wat de begin uren zijn voor de werkers
-    //    beginWorkHours = workHours[index];
-    //    beginSleepHours = SleepHours[index];
-    //    beginToHomeHours = ToHomeHours[index];
-    //    beginToWorkHours = ToWorkHours[index];
+    private void HourDecider()
+    {
+        beginWorkHours = WorkerData.WorkHours[0];
+        endWorkHours = WorkerData.WorkHours[1];
 
-    //    // hier bepaal ik via lenght van de array wat de eind uren zijn voor de werkers
-    //    index = workHours.Length;
-    //    endToWorkHours = workHours[index];
+        beginSleepHours = WorkerData.SleepHours[0];
+        endSleepHours = WorkerData.SleepHours[1];
 
-    //    index = SleepHours.Length;
-    //    endSleepHours = SleepHours[index];
-        
-    //    index = ToWorkHours.Length;
-    //    endToWorkHours = ToWorkHours[index];
+        beginToHomeHours = WorkerData.ToHomeHours[0];
+        endToHomeHours = WorkerData.ToHomeHours[1];
 
-    //    index = ToHomeHours.Length;
-    //    endSleepHours = ToWorkHours[index];
+        beginToWorkHours = WorkerData.ToWorkHours[0];
+        endToWorkHours = WorkerData.ToWorkHours[1];
 
-    //}
-
-    //private void HoursShower()
-    //{
-    //    Debug.Log(transform.name + " begint met werken op " + beginWorkHours + " uur ");
-    //    Debug.Log(transform.name + " gaat naar huis op  " + beginToHomeHours + " uur");
-    //    Debug.Log(transform.name + " gaat naar werk op " + beginToWorkHours + " uur");
-    //    Debug.Log(transform.name + " begint met slapen op " + beginSleepHours + " uur");
-    //}
-
-
-
+    }
+    private void HoursShower()
+    {
+        Debug.Log(transform.name + " begint met werken op " + beginWorkHours + " uur ");
+        Debug.Log(transform.name + " gaat naar huis op  " + beginToHomeHours + " uur");
+        Debug.Log(transform.name + " gaat naar werk op " + beginToWorkHours + " uur");
+        Debug.Log(transform.name + " begint met slapen op " + beginSleepHours + " uur");
+    }
 }

@@ -4,10 +4,17 @@ using UnityEngine;
 
 public static class EventManager
 {
-    private static Dictionary<EventType, System.Action>
-    eventDictionary = new Dictionary<EventType, System.Action>();
+    public enum GameEvent
+    {
+        NEXT_HOUR,
 
-    public static void AddListner(EventType type, System.Action function)
+
+    }
+
+    private static Dictionary<GameEvent, System.Action>
+    eventDictionary = new Dictionary<GameEvent, System.Action>();
+
+    public static void AddListner(GameEvent type, System.Action function)
     {
         if (!eventDictionary.ContainsKey(type))
         {
@@ -16,7 +23,7 @@ public static class EventManager
         eventDictionary[type] += function;
     }
 
-    public static void RemoveListner(EventType type, System.Action function)
+    public static void RemoveListner(GameEvent type, System.Action function)
     {
         if (!eventDictionary.ContainsKey(type) && eventDictionary[type] != null)
         {
@@ -24,7 +31,7 @@ public static class EventManager
         }
     }
 
-    public static void RaiseEvent(EventType type)
+    public static void RaiseEvent(GameEvent type)
     {
         eventDictionary[type]?.Invoke();
     }
